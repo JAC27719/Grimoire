@@ -44,6 +44,19 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
+## OpenCode Custom Command
+
+This project includes a custom OpenCode command to manage spellbook notes:
+
+- `/grimlog <instructions>`
+
+Examples:
+
+- `/grimlog retry budgets with jitter for queue workers`
+- `/grimlog update tracing-hidden-path with baggage propagation pitfalls`
+
+The command will update an existing note when the target is clear, or create a new note when it is not.
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
