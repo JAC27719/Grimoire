@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getEntry } from 'astro:content';
 const pageTitle = 'About';
-const profileSrc = '/headshot.jpg'; // Place your image at public/profile.jpg
+const profileSrc = '/headshot.jpg';
 const entry = await getEntry('pages', 'about');
 const { Content, data } = await entry.render();
 ---
@@ -12,9 +12,9 @@ const { Content, data } = await entry.render();
       <img
         src={profileSrc}
         alt="Profile photo"
-        width={800}
-        height={800}
-        class="w-48 h-48 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-xl object-cover border border-zinc-200 dark:border-zinc-800"
+        width={200}
+        height={200}
+        class="w-36 h-36 md:w-44 md:h-44 lg:w-48 lg:h-48 rounded-full object-cover object-[50%_30%] border-2 border-[color:var(--line)] shadow-xl shadow-black/25 dark:shadow-black/55"
         loading="lazy"
         decoding="async"
       />
