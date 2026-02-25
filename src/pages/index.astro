@@ -1,9 +1,93 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = "Home Page";
+import { getCollection } from 'astro:content';
+
+const pageTitle = 'Grimoire';
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+});
+
+const spells = (await getCollection('spells')).sort((a, b) => {
+  const featured = Number(b.data.featured) - Number(a.data.featured);
+  if (featured !== 0) return featured;
+  return b.data.publishedAt.getTime() - a.data.publishedAt.getTime();
+});
+
+const featuredSpells = spells.slice(0, 3);
 ---
 <BaseLayout pageTitle={pageTitle}>
-	<div class="py-16 text-center">
-		<p class="text-lg font-medium">Page under construction 👷‍♂️🔨🚧🔜</p>
-	</div>
+  <div class="veil-bg rounded-2xl border border-[color:var(--line)]">
+    <section class="mx-auto max-w-6xl px-4 pb-12 pt-16">
+      <p class="section-title">Entry I</p>
+      <h2 class="mt-3 text-5xl font-semibold tracking-tight md:text-6xl">Grimoire</h2>
+      <p class="mt-5 max-w-2xl text-base leading-relaxed text-[color:var(--muted)] md:text-lg">
+        A spellbook of code, systems, and crafted incantations for builders who want practical magic.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/projects" class="hero-glow grimoire-card px-5 py-2.5 rune-link font-semibold">Open the Spellbook</a>
+        <a href="/notes" class="grimoire-card px-5 py-2.5 rune-link font-semibold">Read Spellbook Notes</a>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 py-10">
+      <p class="section-title">Manifesto</p>
+      <div class="grimoire-card mt-4 p-6 md:p-8">
+        <p class="text-lg leading-relaxed">
+          By lanternlight, I bind the vast world of programming into spellwork.
+        </p>
+        <p class="mt-4 leading-relaxed text-[color:var(--muted)]">
+          When something works, I ink it into the Grimoire (ingredients, incantation, and the cost of casting) so you can
+          lift a page, adapt it, and cast it in your own systems.
+        </p>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 py-10">
+      <p class="section-title">Featured Spells</p>
+      <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+        {featuredSpells.map((spell) => (
+          <a href={`/projects/${spell.slug}`} class="grimoire-card lift-on-hover block p-5">
+            <h3 class="text-2xl font-semibold">{spell.data.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-[color:var(--muted)]">{spell.data.summary}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <span class="sigil-badge">{spell.data.difficulty}</span>
+              <span class="sigil-badge">{spell.data.domain}</span>
+              {spell.data.stack.slice(0, 2).map((tag) => (
+                <span class="sigil-badge">{tag}</span>
+              ))}
+            </div>
+            <p class="mt-4 text-xs uppercase tracking-[0.1em] text-[color:var(--muted)]">
+              {dateFormatter.format(spell.data.publishedAt)}
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 py-10">
+      <p class="section-title">Portals</p>
+      <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+        <a href="/projects" class="grimoire-card lift-on-hover block p-6">
+          <h3 class="text-2xl font-semibold">Projects</h3>
+          <p class="mt-2 text-sm text-[color:var(--muted)]">A catalog of spells, patterns, and system designs.</p>
+        </a>
+        <a href="/notes" class="grimoire-card lift-on-hover block p-6">
+          <h3 class="text-2xl font-semibold">Spellbook Notes</h3>
+          <p class="mt-2 text-sm text-[color:var(--muted)]">Concise engineering notes, tactics, and reusable incantations.</p>
+        </a>
+        <a href="/about" class="grimoire-card lift-on-hover block p-6">
+          <h3 class="text-2xl font-semibold">About the Mage</h3>
+          <p class="mt-2 text-sm text-[color:var(--muted)]">The story, intent, and values behind the Grimoire.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-4 pb-16 pt-8 text-center">
+      <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--muted)]">Begin with one spell</p>
+      <a href="/projects" class="hero-glow grimoire-card rune-link mt-4 inline-block px-6 py-3 font-semibold">Browse the Grimoire</a>
+    </section>
+  </div>
 </BaseLayout>

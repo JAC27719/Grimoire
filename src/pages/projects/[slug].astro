@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+});
+
+export async function getStaticPaths() {
+  const spells = await getCollection('spells');
+  return spells.map((spell) => ({
+    params: { slug: spell.slug },
+    props: { spell },
+  }));
+}
+
+const { spell } = Astro.props as { spell: CollectionEntry<'spells'> };
+const { Content } = await spell.render();
+---
+<BaseLayout pageTitle={spell.data.title}>
+  <article class="mx-auto max-w-4xl space-y-8">
+    <header class="grimoire-card hero-glow p-6 md:p-8">
+      <p class="section-title">Spell Entry</p>
+      <h2 class="mt-3 text-4xl font-semibold tracking-tight md:text-5xl">{spell.data.title}</h2>
+      <p class="mt-4 leading-relaxed text-[color:var(--muted)]">{spell.data.summary}</p>
+      <div class="mt-5 flex flex-wrap gap-2">
+        <span class="sigil-badge">{spell.data.difficulty}</span>
+        <span class="sigil-badge">{spell.data.domain}</span>
+        <span class="sigil-badge">{spell.data.status}</span>
+        <span class="sigil-badge">{dateFormatter.format(spell.data.publishedAt)}</span>
+      </div>
+      <div class="mt-3 flex flex-wrap gap-2">
+        {spell.data.stack.map((item) => (
+          <span class="sigil-badge">{item}</span>
+        ))}
+      </div>
+    </header>
+
+    <section class="markdown grimoire-card p-6 md:p-8">
+      <Content />
+    </section>
+
+    <div>
+      <a href="/projects" class="rune-link text-sm font-semibold uppercase tracking-[0.1em]">Back to Spellbook</a>
+    </div>
+  </article>
+</BaseLayout>

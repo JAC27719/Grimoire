@@ -7,7 +7,7 @@ interface Props {
 
 const { linkedinUrl, githubUrl, email } = Astro.props as Props;
 ---
-<footer class="theme-footer w-full border-t border-zinc-200 bg-zinc-50 text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-white transition-colors">
+<footer class="theme-footer w-full border-t border-[color:var(--line)] bg-[color:var(--bg-soft)] text-[color:var(--muted)] transition-colors">
   <div class="mx-auto max-w-7xl px-4 py-6">
     <div class="flex items-center justify-center gap-6">
       {linkedinUrl && (
@@ -15,7 +15,7 @@ const { linkedinUrl, githubUrl, email } = Astro.props as Props;
           href={linkedinUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-sm font-medium hover:underline"
+          class="rune-link text-sm font-semibold uppercase tracking-[0.1em]"
           aria-label="LinkedIn"
         >
           LinkedIn
@@ -26,7 +26,7 @@ const { linkedinUrl, githubUrl, email } = Astro.props as Props;
           href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-sm font-medium hover:underline"
+          class="rune-link text-sm font-semibold uppercase tracking-[0.1em]"
           aria-label="GitHub"
         >
           GitHub
@@ -35,7 +35,7 @@ const { linkedinUrl, githubUrl, email } = Astro.props as Props;
       {email && (
         <a
           href={`mailto:${email}`}
-          class="text-sm font-medium hover:underline"
+          class="rune-link text-sm font-semibold uppercase tracking-[0.1em]"
           aria-label="Email"
         >
           Email

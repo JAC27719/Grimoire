@@ -1,97 +1,193 @@
 @import "tailwindcss";
 
-/* Fallback dark theme overrides in case Tailwind darkMode config isn't picked up */
-html.dark .theme-body {
-  background-color: #09090b; /* zinc-950/900 area */
-  color: #e5e7eb; /* zinc-200 */
-}
-html.dark .theme-header {
-  background-color: #18181b; /* zinc-900 */
-  border-color: #27272a; /* zinc-800 */
-}
-html.dark .theme-footer {
-  background-color: #18181b; /* zinc-900 */
-  border-color: #27272a; /* zinc-800 */
-  color: #e5e7eb;
-}
-html.dark .theme-card {
-  background-color: #27272a; /* zinc-800 */
-  border-color: #3f3f46; /* zinc-700 */
+:root {
+  --bg: #0f0d15;
+  --bg-soft: #171322;
+  --text: #ebe7f2;
+  --muted: #b4a9c8;
+  --card: #1d172b;
+  --line: #3d3356;
+  --accent: #7e4fd4;
+  --accent-2: #154933;
+  --metal-gold: #d8b971;
+  --metal-silver: #c4cad8;
+  --glow: rgba(126, 79, 212, 0.28);
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", serif;
+  --font-body: "Avenir Next", "Segoe UI", "Noto Sans", sans-serif;
+  --font-code: "JetBrains Mono", "Fira Code", "SFMono-Regular", Consolas, monospace;
 }
 
-/* Make all paragraph text white in dark mode for higher contrast */
-html.dark p {
-  color: #ffffff;
+html.dark {
+  --bg: #09080e;
+  --bg-soft: #110f19;
+  --text: #f4f0fc;
+  --muted: #bfb5d3;
+  --card: #151121;
+  --line: #342c4f;
+  --accent: #9f70f2;
+  --accent-2: #1c5b3f;
+  --metal-gold: #e0c583;
+  --metal-silver: #d2d8e3;
+  --glow: rgba(159, 112, 242, 0.3);
 }
 
-/* Minimal Markdown typography without relying on @apply */
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  color: var(--text);
+}
+
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-code);
+}
+
+.grimoire-shell {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.veil-bg {
+  background:
+    radial-gradient(circle at 20% 10%, var(--glow), transparent 40%),
+    radial-gradient(circle at 80% 100%, color-mix(in srgb, var(--accent-2) 25%, transparent), transparent 38%),
+    linear-gradient(180deg, var(--bg), var(--bg-soft));
+}
+
+.section-title {
+  color: var(--metal-gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.grimoire-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px -20px rgba(0, 0, 0, 0.35);
+}
+
+.rune-link {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+  transition: color 180ms ease;
+}
+
+.rune-link:hover {
+  color: var(--metal-silver);
+}
+
+.sigil-badge {
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--card) 68%, var(--accent-2) 32%);
+  color: var(--metal-silver);
+  border-radius: 9999px;
+  padding: 0.2rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.sigil-badge.sigil-badge-active {
+  border-color: var(--metal-gold);
+  color: var(--metal-gold);
+}
+
+.hero-glow {
+  border: 1px solid var(--line);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--metal-gold) 45%, transparent),
+    0 0 30px -16px color-mix(in srgb, var(--accent) 45%, transparent),
+    0 20px 45px -30px rgba(0, 0, 0, 0.55);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lift-on-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .lift-on-hover:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+    box-shadow: 0 20px 35px -25px rgba(0, 0, 0, 0.55);
+  }
+}
+
 .markdown {
-  font-size: 1rem;         /* text-base */
-  line-height: 1.75;       /* leading-7 */
-  color: #27272a;          /* zinc-800 */
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text);
 }
-html.dark .markdown {
-  color: #ffffff;          /* white in dark mode for readability */
-}
+
 .markdown h1 {
-  margin-top: 2rem;        /* mt-8 */
-  margin-bottom: 1rem;     /* mb-4 */
-  font-size: 1.875rem;     /* text-3xl */
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.875rem;
   line-height: 2.25rem;
-  font-weight: 700;        /* font-bold */
+  font-weight: 700;
 }
+
 .markdown h2 {
-  margin-top: 2rem;        /* mt-8 */
-  margin-bottom: 0.75rem;  /* mb-3 */
-  font-size: 1.5rem;       /* text-2xl */
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
   line-height: 2rem;
-  font-weight: 600;        /* font-semibold */
+  font-weight: 600;
 }
+
 .markdown h3 {
-  margin-top: 1.5rem;      /* mt-6 */
-  margin-bottom: 0.5rem;   /* mb-2 */
-  font-size: 1.25rem;      /* text-xl */
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
   line-height: 1.75rem;
-  font-weight: 600;        /* font-semibold */
+  font-weight: 600;
 }
+
 .markdown p { margin-top: 1rem; }
 .markdown ul { margin-top: 1rem; padding-left: 1.5rem; list-style: disc; }
 .markdown ol { margin-top: 1rem; padding-left: 1.5rem; list-style: decimal; }
 .markdown li { margin-top: 0.25rem; }
+
 .markdown a {
+  color: var(--accent);
   text-decoration: underline;
-  text-underline-offset: 4px; /* underline-offset-4 */
+  text-underline-offset: 4px;
 }
+
 .markdown code {
-  border-radius: 0.25rem;  /* rounded */
-  background-color: #f4f4f5; /* zinc-100 */
-  padding: 0.125rem 0.25rem; /* px-1 py-0.5 */
-  font-size: 0.875rem;     /* text-sm */
+  border-radius: 0.25rem;
+  background: color-mix(in srgb, var(--card) 60%, var(--bg-soft) 40%);
+  padding: 0.125rem 0.25rem;
+  font-size: 0.875rem;
 }
-html.dark .markdown code {
-  background-color: #27272a; /* zinc-800 */
-  color: #ffffff;
-}
+
 .markdown pre {
-  margin-top: 1rem;        /* mt-4 */
-  overflow-x: auto;        /* overflow-x-auto */
-  border-radius: 0.5rem;   /* rounded */
-  background-color: #f4f4f5; /* zinc-100 */
-  padding: 1rem;           /* p-4 */
-  font-size: 0.875rem;     /* text-sm */
-  color: #18181b;          /* text-zinc-900 */
+  margin-top: 1rem;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  background: color-mix(in srgb, var(--card) 65%, var(--bg-soft) 35%);
+  border: 1px solid var(--line);
+  padding: 1rem;
+  font-size: 0.875rem;
 }
-html.dark .markdown pre {
-  background-color: #27272a; /* zinc-800 */
-  color: #ffffff;            /* white */
-}
+
 .markdown blockquote {
-  margin-top: 1rem;         /* mt-4 */
-  border-left: 4px solid #d4d4d8; /* border-zinc-300 */
-  padding-left: 1rem;       /* pl-4 */
-  font-style: italic;       /* italic */
-}
-html.dark .markdown blockquote {
-  border-left-color: #3f3f46; /* dark:border-zinc-700 */
-  color: #e4e4e7;             /* dark:text-zinc-200 */
+  margin-top: 1rem;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  padding-left: 1rem;
+  font-style: italic;
 }

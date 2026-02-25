@@ -11,18 +11,18 @@ const { githubUsername, avatarSize = 40 } = Astro.props as Props;
 const links = [
   { href: '/', label: 'Home' },
   { href: '/projects', label: 'Projects' },
-  { href: '/gallery', label: 'Gallery' },
+  { href: '/notes', label: 'Notes' },
   { href: '/about', label: 'About' },
 ];
 
 const avatarUrl = `https://github.com/${githubUsername}.png?size=${avatarSize * 2}`;
 ---
-<header class="theme-header w-full bg-zinc-50 border-b border-zinc-200 dark:bg-zinc-900 dark:border-zinc-800 transition-colors">
+<header class="theme-header w-full border-b border-[color:var(--line)] bg-[color:var(--bg-soft)] backdrop-blur transition-colors">
   <div class="mx-auto max-w-7xl px-4">
     <div class="flex h-14 items-center justify-between">
       <a
         href={`https://github.com/${githubUsername}`}
-        class="flex items-center gap-3 rounded-full focus:outline-none focus:ring-2 focus:ring-black/40 dark:focus:ring-white/60"
+        class="flex items-center gap-3 rounded-full px-1 py-0.5 focus:outline-none focus:ring-2 focus:ring-black/40 dark:focus:ring-white/60"
         aria-label={`${githubUsername} profile`}
       >
         <img
@@ -30,16 +30,17 @@ const avatarUrl = `https://github.com/${githubUsername}.png?size=${avatarSize * 
           alt={`${githubUsername} profile picture`}
           width={avatarSize}
           height={avatarSize}
-          class="h-10 w-10 rounded-full object-cover ring-1 ring-black/10 dark:ring-white/20"
+          class="h-10 w-10 rounded-full object-cover ring-1 ring-[color:var(--line)]"
           loading="eager"
           decoding="async"
         />
+        <span class="hidden text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted)] sm:inline">Grimoire</span>
       </a>
       <div class="flex items-center gap-4">
         <Navigation links={links} />
         <button
           type="button"
-          class="inline-flex items-center justify-center rounded-md border border-black/10 bg-transparent px-2.5 py-1.5 text-sm font-medium text-current hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-black/40 active:bg-black/10 dark:border-white/20 dark:hover:bg-white/10 dark:focus:ring-white/60 dark:active:bg-white/15"
+          class="inline-flex items-center justify-center rounded-md border border-[color:var(--line)] bg-[color:var(--card)] px-2.5 py-1.5 text-sm font-medium text-current hover:bg-[color:var(--bg-soft)] focus:outline-none focus:ring-2 focus:ring-black/40 dark:focus:ring-white/60 active:opacity-85"
           aria-label="Toggle dark mode"
           title="Toggle theme"
           data-theme-toggle

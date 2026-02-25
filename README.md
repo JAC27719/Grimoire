@@ -1,3 +1,9 @@
+# Grimoire
+
+Brand and tone reference for future work: `docs/brand-voice.md`.
+
+---
+
 # Astro Starter Kit: Minimal
 
 ```sh
