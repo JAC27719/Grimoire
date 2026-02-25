@@ -22,7 +22,9 @@ const featuredSpells = spells.slice(0, 3);
   <div class="veil-bg rounded-2xl border border-[color:var(--line)]">
     <section class="mx-auto max-w-6xl px-4 pb-12 pt-16">
       <p class="section-title">Entry I</p>
-      <h2 class="mt-3 text-5xl font-semibold tracking-tight md:text-6xl">Grimoire</h2>
+      <h2 class="mt-3 text-5xl font-semibold tracking-tight md:text-6xl">
+        <span data-brand-dark="Grimoire" data-brand-light="Tome">Grimoire</span>
+      </h2>
       <p class="mt-5 max-w-2xl text-base leading-relaxed text-[color:var(--muted)] md:text-lg">
         A spellbook of code, systems, and crafted incantations for builders who want practical magic.
       </p>
@@ -39,7 +41,8 @@ const featuredSpells = spells.slice(0, 3);
           By lanternlight, I bind the vast world of programming into spellwork.
         </p>
         <p class="mt-4 leading-relaxed text-[color:var(--muted)]">
-          When something works, I ink it into the Grimoire (ingredients, incantation, and the cost of casting) so you can
+          When something works, I ink it into the <span data-brand-dark="Grimoire" data-brand-light="Tome">Grimoire</span>
+          (ingredients, incantation, and the cost of casting) so you can
           lift a page, adapt it, and cast it in your own systems.
         </p>
       </div>
@@ -80,14 +83,18 @@ const featuredSpells = spells.slice(0, 3);
         </a>
         <a href="/about" class="grimoire-card lift-on-hover block p-6">
           <h3 class="text-2xl font-semibold">About the Mage</h3>
-          <p class="mt-2 text-sm text-[color:var(--muted)]">The story, intent, and values behind the Grimoire.</p>
+          <p class="mt-2 text-sm text-[color:var(--muted)]">
+            The story, intent, and values behind the <span data-brand-dark="Grimoire" data-brand-light="Tome">Grimoire</span>.
+          </p>
         </a>
       </div>
     </section>
 
     <section class="mx-auto max-w-6xl px-4 pb-16 pt-8 text-center">
       <p class="text-xs uppercase tracking-[0.14em] text-[color:var(--muted)]">Begin with one spell</p>
-      <a href="/projects" class="hero-glow grimoire-card rune-link mt-4 inline-block px-6 py-3 font-semibold">Browse the Grimoire</a>
+      <a href="/projects" class="hero-glow grimoire-card rune-link mt-4 inline-block px-6 py-3 font-semibold">
+        Browse the <span data-brand-dark="Grimoire" data-brand-light="Tome">Grimoire</span>
+      </a>
     </section>
   </div>
 </BaseLayout>

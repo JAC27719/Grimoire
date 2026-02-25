@@ -20,22 +20,36 @@ const avatarUrl = `https://github.com/${githubUsername}.png?size=${avatarSize * 
 <header class="theme-header w-full border-b border-[color:var(--line)] bg-[color:var(--bg-soft)] backdrop-blur transition-colors">
   <div class="mx-auto max-w-7xl px-4">
     <div class="flex h-14 items-center justify-between">
-      <a
-        href={`https://github.com/${githubUsername}`}
-        class="flex items-center gap-3 rounded-full px-1 py-0.5 focus:outline-none focus:ring-2 focus:ring-black/40 dark:focus:ring-white/60"
-        aria-label={`${githubUsername} profile`}
-      >
-        <img
-          src={avatarUrl}
-          alt={`${githubUsername} profile picture`}
-          width={avatarSize}
-          height={avatarSize}
-          class="h-10 w-10 rounded-full object-cover ring-1 ring-[color:var(--line)]"
-          loading="eager"
-          decoding="async"
-        />
-        <span class="hidden text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted)] sm:inline">Grimoire</span>
-      </a>
+      <div class="flex items-center gap-3">
+        <a
+          href={`https://github.com/${githubUsername}`}
+          class="rounded-full px-1 py-0.5 focus:outline-none focus:ring-2 focus:ring-black/40 dark:focus:ring-white/60"
+          aria-label={`${githubUsername} profile`}
+        >
+          <img
+            src={avatarUrl}
+            alt={`${githubUsername} profile picture`}
+            width={avatarSize}
+            height={avatarSize}
+            class="h-10 w-10 rounded-full object-cover ring-1 ring-[color:var(--line)]"
+            loading="eager"
+            decoding="async"
+          />
+        </a>
+        <span
+          class="hidden text-xs font-semibold uppercase tracking-[0.12em] text-[color:var(--muted)] sm:inline"
+          data-brand-dark="Grimoire"
+          data-brand-light="Tome"
+        >Grimoire</span>
+        <a
+          href="https://opencode.ai/docs"
+          class="hidden text-xs italic text-[color:var(--muted)] underline underline-offset-2 hover:text-[color:var(--text)] sm:inline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Created using Opencode
+        </a>
+      </div>
       <div class="flex items-center gap-4">
         <Navigation links={links} />
         <button

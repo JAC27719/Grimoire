@@ -45,6 +45,35 @@ const email = emailProp ?? DEFAULTS.email;
         } catch (_) {}
       })();
     </script>
+    <script is:inline>
+      (function() {
+        const applyBrandLabels = () => {
+          const dark = document.documentElement.classList.contains('dark');
+          document.querySelectorAll('[data-brand-dark][data-brand-light]').forEach((el) => {
+            const next = dark ? el.getAttribute('data-brand-dark') : el.getAttribute('data-brand-light');
+            if (next !== null && el.textContent !== next) {
+              el.textContent = next;
+            }
+          });
+        };
+
+        const attach = () => {
+          applyBrandLabels();
+          const root = document.documentElement;
+          if (!root.__brandObserver) {
+            const observer = new MutationObserver(() => applyBrandLabels());
+            observer.observe(root, { attributes: true, attributeFilter: ['class'] });
+            root.__brandObserver = observer;
+          }
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', attach, { once: true });
+        } else {
+          attach();
+        }
+      })();
+    </script>
   </head>
   <body class="theme-body grimoire-shell min-h-screen flex flex-col transition-colors">
     <Header githubUsername={githubUsername} />

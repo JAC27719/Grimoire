@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0f0d15;
-  --bg-soft: #171322;
-  --text: #ebe7f2;
-  --muted: #b4a9c8;
-  --card: #1d172b;
-  --line: #3d3356;
-  --accent: #7e4fd4;
-  --accent-2: #154933;
-  --metal-gold: #d8b971;
-  --metal-silver: #c4cad8;
-  --glow: rgba(126, 79, 212, 0.28);
+  --bg: #f8f3e9;
+  --bg-soft: #efe6d8;
+  --text: #1f1811;
+  --muted: #5f5345;
+  --card: #fff9ee;
+  --line: #cfbfaa;
+  --accent: #8a4f1f;
+  --accent-2: #2f6550;
+  --metal-gold: #946f2f;
+  --metal-silver: #5e6874;
+  --glow: rgba(138, 79, 31, 0.16);
   --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", serif;
   --font-body: "Avenir Next", "Segoe UI", "Noto Sans", sans-serif;
   --font-code: "JetBrains Mono", "Fira Code", "SFMono-Regular", Consolas, monospace;
